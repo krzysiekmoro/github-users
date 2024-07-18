@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {searchUsers} from '../services/requestService';
-import {BsChevronDown} from 'react-icons/bs';
+import UserRepos from './UserRepos';
+import {BsChevronDown, BsChevronUp} from 'react-icons/bs';
 
 interface User {
   id: number;
@@ -15,6 +16,10 @@ const UserSearch: React.FC = () => {
   const handleSearch = async () => {
     const users = await searchUsers(username);
     setUsers(users);
+  };
+
+  const onSelectUser = (user: string) => {
+    selectedUser === '' ? setSelectedUser(user) : setSelectedUser('');
   };
 
   return (
@@ -33,13 +38,20 @@ const UserSearch: React.FC = () => {
         {users.map((user) => (
           <li
             key={user.id}
-            onClick={() => setSelectedUser(user.login)}
+            onClick={() => onSelectUser(user.login)}
             className='user-item'
           >
             <span className='user-card'>
               {user.login}
-              <BsChevronDown className='chevron-icon' />
+              {selectedUser && selectedUser === user.login ? (
+                <BsChevronUp className='chevron-icon' />
+              ) : (
+                <BsChevronDown className='chevron-icon' />
+              )}
             </span>
+            {selectedUser && selectedUser === user.login && (
+              <UserRepos username={selectedUser} />
+            )}
           </li>
         ))}
       </ul>
