@@ -11,3 +11,8 @@ export const searchUsers = async (username: string) => {
   });
   return response.data.items;
 };
+
+export const getUserRepos = async (username: string) => {
+  const response = await axios.get(`${API_URL}/users/${username}/repos`);
+  return response.data;
+};
