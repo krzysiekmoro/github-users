@@ -1,8 +1,13 @@
 import React from 'react';
-import './App.css';
+import UserSearch from './components/UserSearch';
 
-function App() {
-  return <div className='App'></div>;
-}
+const App: React.FC = () => {
+  return (
+    <div>
+      <h1>GitHub User Search</h1>
+      <UserSearch />
+    </div>
+  );
+};
 
 export default App;
