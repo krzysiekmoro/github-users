@@ -1,5 +1,6 @@
 import React from 'react';
 import UserSearch from './components/UserSearch';
+import './App.css'
 
 const App: React.FC = () => {
   return (

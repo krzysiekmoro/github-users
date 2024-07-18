@@ -18,20 +18,27 @@ const UserSearch: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className='search-container'>
       <input
         type='text'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         placeholder='Enter username'
+        className='search-input'
       />
-      <button onClick={handleSearch}>Search</button>
-      <ul>
+      <button onClick={handleSearch} className='search-button'>
+        Search
+      </button>
+      <ul className='user-list'>
         {users.map((user) => (
-          <li key={user.id} onClick={() => setSelectedUser(user.login)}>
-            <span>
+          <li
+            key={user.id}
+            onClick={() => setSelectedUser(user.login)}
+            className='user-item'
+          >
+            <span className='user-card'>
               {user.login}
-              <BsChevronDown />
+              <BsChevronDown className='chevron-icon' />
             </span>
           </li>
         ))}
